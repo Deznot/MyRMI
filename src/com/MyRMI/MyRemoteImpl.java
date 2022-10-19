@@ -26,7 +26,7 @@ public class MyRemoteImpl extends UnicastRemoteObject implements MyRemoteInterfa
             */
         try {
             MyRemoteInterface service = new MyRemoteImpl();
-            Naming.rebind("Remote Hello", service);
+            Naming.rebind("RemoteHello", service);
         }catch(Exception ex) {
             ex.printStackTrace();
         }

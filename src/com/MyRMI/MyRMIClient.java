@@ -10,7 +10,7 @@ public class MyRMIClient {
 
     public void go() {
         try {
-            MyRemoteInterface service = (MyRemoteInterface) Naming.lookup("rmi://127.0.0.1/Remote Hello");
+            MyRemoteInterface service = (MyRemoteInterface) Naming.lookup("rmi://127.0.0.1/RemoteHello");
 
             String s = service.sayHello();
     
