@@ -2,6 +2,7 @@ package com.MyRMI;
 
 import java.rmi.*;
 import com.MyRMI.MyRemoteInterface;
+import java.rmi.registry.*;
 
 public class MyRMIClient {
     public static void main(String[] args) {
@@ -10,13 +11,17 @@ public class MyRMIClient {
 
     public void go() {
         try {
-            MyRemoteInterface service = (MyRemoteInterface) Naming.lookup("rmi://127.0.0.1/RemoteHello");
+            //Locate the registry
+            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 8010);
+                
+            //Get the reference of exported object from RMI Registry
+            MyRemoteInterface first = (MyRemoteInterface) registry.lookup("first");
 
-            String s = service.sayHello();
-    
-            System.out.println(s);
-        }catch (Exception ex) {
-            ex.printStackTrace();
+            //Now we can invoke the method of the referenced objects
+            String response = first.sayHello();
+            System.out.print(response);
+        }catch(Exception ex) {
+            System.out.println("Client side error " + ex);
         }
     }   
 }
