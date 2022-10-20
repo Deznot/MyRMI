@@ -19,16 +19,5 @@ public class MyRemoteImpl extends UnicastRemoteObject implements MyRemoteInterfa
     }
 
     public static void main(String[] args) {
-        /*
-            *  Need to do available to remote clients. To do this by instantiating it and putting it into the RMI
-            registry (which must be running or this line of code fails). When register the implementation object, the RMI system actually puts the stub in
-            the registry, since that's what the client really needs. Register service using the static rebind() method of the java.rmi.Naming class
-            */
-        try {
-            MyRemoteInterface service = new MyRemoteImpl();
-            Naming.rebind("RemoteHello", service);
-        }catch(Exception ex) {
-            ex.printStackTrace();
-        }
     }
 }
